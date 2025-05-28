@@ -3,10 +3,10 @@ using Microsoft.Data.SqlClient;
 
 namespace Blog.Screens.MainScreen
 {
-    public class MainScreen
+    public class Principal
     {
         private readonly SqlConnection _connection;
-        public MainScreen(SqlConnection connection)
+        public Principal(SqlConnection connection)
         {
             _connection = connection;
         }
