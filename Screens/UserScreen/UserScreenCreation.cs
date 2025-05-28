@@ -5,20 +5,20 @@ using Microsoft.Data.SqlClient;
 
 namespace Blog.Screens.UserScreen
 {
-    public class Create
+    public class UserScreenCreation
     {
         private readonly SqlConnection _connection;
-        public Create(SqlConnection connection)
+        public UserScreenCreation(SqlConnection connection)
         {
             _connection = connection;
         }
-        public void User()
+        public void Create()
         {
             Console.WriteLine("---------------------------------");
             Console.WriteLine("=========== Screen: User creation");
             Console.WriteLine("---------------------------------");
             Console.WriteLine("To create an user we are going to need a few informations");
-            string name = InputHelpers.NotNullOrWhiteSpace("Name");
+            var name = InputHelpers.NotNullOrWhiteSpace("Name");
             var email = InputHelpers.NotNullOrWhiteSpace("E-mail");
             var pwd = InputHelpers.NotNullOrWhiteSpace("Password");            
             var bio = InputHelpers.NotNullOrWhiteSpace("Please talk a bit about you (BIO)");
