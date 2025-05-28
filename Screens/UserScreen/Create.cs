@@ -14,14 +14,17 @@ namespace Blog.Screens.UserScreen
         }
         public void User()
         {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("=========== Screen: User creation");
+            Console.WriteLine("---------------------------------");
             Console.WriteLine("To create an user we are going to need a few informations");
             string name = InputHelpers.NotNullOrWhiteSpace("Name");
             var email = InputHelpers.NotNullOrWhiteSpace("E-mail");
             var pwd = InputHelpers.NotNullOrWhiteSpace("Password");            
-            var bio = InputHelpers.NotNullOrWhiteSpace("Please talk a bit about you (BIO):");
+            var bio = InputHelpers.NotNullOrWhiteSpace("Please talk a bit about you (BIO)");
 
             var mathRandom = new Random();
-            var slug = name.ToLower().Replace(" ", "-") + "#" + mathRandom.Next(10000, 99999);
+            var slug = name.ToLower().Replace(" ", "") + "#" + mathRandom.Next(10000, 99999);
 
             var userRepository = new Repository<User>(_connection);
             var user = new User

@@ -47,8 +47,8 @@ namespace Blog
         {
             using var connection = new SqlConnection(CONNECTION_STRING);
 
-            var main = new MainScreen(connection);
-            main.Main();
+            var screen = new MainScreen(connection);
+            screen.Main();
         }
         public static void ReadUsers(SqlConnection connection)
         {

@@ -21,21 +21,15 @@ namespace Blog.Screens.MainScreen
             var opt = Console.ReadLine();
             var readOpt = int.TryParse(opt, out int optSelected);
 
-            if (readOpt || optSelected != 0)
+            Console.Clear();
+            switch(optSelected)
             {
-                Console.Clear();
-                switch(optSelected)
-                {
-                    case 1:
-                        Console.WriteLine("=========== Screen: User creation");
-                        Console.WriteLine("---------------------------------");
-                        var userCreation = new Create(_connection);
-                        userCreation.User();
-                        Main();
-                        break;
-                }
-
-            }
+                case 1:
+                    var userCreation = new Create(_connection);
+                    userCreation.User();
+                    Main();
+                    break;
+            }            
         }
     }
 }
