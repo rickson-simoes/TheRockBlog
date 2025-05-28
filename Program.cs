@@ -4,37 +4,7 @@ using Blog.Screens.MainScreen;
 using Microsoft.Data.SqlClient;
 
 namespace Blog
-{
-     /*
-      Infos:
-      
-     - Um POST tem muitas TAGS e uma tag pode estar em muitos posts
-     - O MESMO acontece com o usuario, um usuario tem muitos roles e um role muitos usuarios
-     - Uma categoria tem muitos posts mas um post não tem muitas categorias
-
-
-     - @DESAFIO:
-        Cadastrar um usuário.
-        Cadastrar um perfil.
-        Vincular um usuário a um perfil.
-
-        Cadastrar uma categoria.
-
-        Cadastrar uma Tag.
-
-        Cadastrar um Post.
-
-        Vincular um post a uma tag.
-
-        Listar os usuários (Nome, Email e Perfis separados por vírgula)
-        Listar categorias com quantidade de posts
-        Listar tags com quantidade de posts
-        Listas os posts de uma categoria
-        Listar todos os posts com sua categoria
-        Listar os posts com suas tags (separados por vírgula)
-    */
-
-  
+{  
     public class Program
     {
         private const string CONNECTION_STRING = @"Server=localhost,1433;
