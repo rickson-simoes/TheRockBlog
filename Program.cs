@@ -4,36 +4,33 @@ using Microsoft.Data.SqlClient;
 
 namespace Blog
 {
-     /* 
-     
+     /*
+      Infos:
+      
      - Um POST tem muitas TAGS e uma tag pode estar em muitos posts
-
      - O MESMO acontece com o usuario, um usuario tem muitos roles e um role muitos usuarios
-
      - Uma categoria tem muitos posts mas um post não tem muitas categorias
 
 
-   @@DESAFIO@@
-    Cadastrar um usuário.
-    Cadastrar um perfil.
-    Vincular um usuário a um perfil.
+     - @DESAFIO:
+        Cadastrar um usuário.
+        Cadastrar um perfil.
+        Vincular um usuário a um perfil.
 
-    Cadastrar uma categoria.
+        Cadastrar uma categoria.
 
-    Cadastrar uma Tag.
+        Cadastrar uma Tag.
 
-    Cadastrar um Post.
+        Cadastrar um Post.
 
-    Vincular um post a uma tag.
+        Vincular um post a uma tag.
 
-    Listar os usuários (Nome, Email e Perfis separados por vírgula)
-    Listar categorias com quantidade de posts
-    Listar tags com quantidade de posts
-    Listas os posts de uma categoria
-    Listar todos os posts com sua categoria
-    Listar os posts com suas tags (separados por vírgula)
-
-
+        Listar os usuários (Nome, Email e Perfis separados por vírgula)
+        Listar categorias com quantidade de posts
+        Listar tags com quantidade de posts
+        Listas os posts de uma categoria
+        Listar todos os posts com sua categoria
+        Listar os posts com suas tags (separados por vírgula)
     */
 
   
@@ -49,11 +46,7 @@ namespace Blog
         {
             using var connection = new SqlConnection(CONNECTION_STRING);
 
-            //ReadUsers(connection);
-            ReadUsersWithRoles(connection);
-            //CreateUser(connection);
-            //ReadRoles(connection);
-            //ReadTags(connection);
+            
         }
         public static void ReadUsers(SqlConnection connection)
         {
@@ -105,30 +98,6 @@ namespace Blog
             };
 
             userRepository.Create(user);
-        }
-        public static void ReadRoles(SqlConnection connection)
-        {
-            var roleRepository = new Repository<Role>(connection);
-            var roles = roleRepository.Get();
-            foreach (var role in roles)
-            {
-                Console.WriteLine($"Id: {role.Id}");
-                Console.WriteLine($"Name: {role.Name}");
-                Console.WriteLine($"Slug: {role.Slug}");
-                Console.WriteLine($"====================================");
-            }
-        }
-        public static void ReadTags(SqlConnection connection)
-        {
-            var roleRepository = new Repository<Tag>(connection);
-            var roles = roleRepository.Get();
-            foreach (var role in roles)
-            {
-                Console.WriteLine($"Id: {role.Id}");
-                Console.WriteLine($"Name: {role.Name}");
-                Console.WriteLine($"Slug: {role.Slug}");
-                Console.WriteLine($"====================================");
-            }
         }
     }
 }
