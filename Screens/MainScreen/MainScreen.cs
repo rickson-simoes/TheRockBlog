@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Blog.Screens.UserScreen;
+using Microsoft.Data.SqlClient;
 
 namespace Blog.Screens.MainScreen
 {
     public class MainScreen
     {
+        private readonly SqlConnection _connection;
+        public MainScreen(SqlConnection connection)
+        {
+            _connection = connection;
+        }
+
         public void Main()
         {
             Console.Clear();
@@ -20,11 +23,15 @@ namespace Blog.Screens.MainScreen
 
             if (readOpt || optSelected != 0)
             {
+                Console.Clear();
                 switch(optSelected)
                 {
                     case 1:
-                        Console.WriteLine("Screen: Create an user");
-                        // fazer a tela de usuario.
+                        Console.WriteLine("=========== Screen: User creation");
+                        Console.WriteLine("---------------------------------");
+                        var userCreation = new Create(_connection);
+                        userCreation.User();
+                        Main();
                         break;
                 }
 

@@ -1,5 +1,6 @@
 ﻿using Blog.Models;
 using Blog.Repositories;
+using Blog.Screens.MainScreen;
 using Microsoft.Data.SqlClient;
 
 namespace Blog
@@ -46,7 +47,8 @@ namespace Blog
         {
             using var connection = new SqlConnection(CONNECTION_STRING);
 
-            
+            var main = new MainScreen(connection);
+            main.Main();
         }
         public static void ReadUsers(SqlConnection connection)
         {
@@ -83,21 +85,6 @@ namespace Blog
                 }
                 Console.WriteLine($"====================================");
             }
-        }
-        public static void CreateUser(SqlConnection connection)
-        {
-            var userRepository = new Repository<User>(connection);
-            var user = new User 
-            { 
-                Email = "paul@hotmail.com",
-                Bio = "This is a bio from Paul",
-                Image = "https://example.com/image.jpg",
-                Name = "Paul Doe",
-                PasswordHash = "hashedpassword123",
-                Slug = "paul-doe"
-            };
-
-            userRepository.Create(user);
         }
     }
 }
