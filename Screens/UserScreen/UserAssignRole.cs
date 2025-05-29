@@ -39,34 +39,57 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("============================================================");
             foreach (var user in users)
             {
-                Console.WriteLine($"User: {user.Name} - Email: {user.Email} - Id: {user.Id}");
+                Console.WriteLine($"Id: {user.Id} - User: {user.Name} - Email: {user.Email}");
                 Console.WriteLine($"---");
             }
             Console.WriteLine("============================================================");
             Console.WriteLine();
 
             Console.Write("Please choose the user ID which you want to assign a role: ");
-            var isInputValid = int.TryParse(Console.ReadLine(), out int userId);
-            User userChoosen = users.First(usr => usr.Id == userId);
-            int userChoosenId = userChoosen.Id;
+            int.TryParse(Console.ReadLine(), out int userId);
+            User userSelected = users.First(usr => usr.Id == userId);
+            int userIdSelected = userSelected.Id;
 
             Console.Clear();
             Console.WriteLine("User to be assigned:");
-            Console.WriteLine($"{userChoosen.Name}");
-            Console.WriteLine($"{userChoosen.Email}");
-            Console.WriteLine($"{userChoosen.Bio}");
-            Console.WriteLine($"{userChoosen.Slug}");
-            Console.WriteLine($"-------------------");
+            Console.WriteLine($"{userSelected.Name}");
+            Console.WriteLine($"{userSelected.Email}");
+            Console.WriteLine($"{userSelected.Bio}");
+            Console.WriteLine($"{userSelected.Slug}");
             Console.WriteLine();
+            Console.WriteLine("Now select the type of role");
+            var roles = new Repository<Role>(_connection).Get();
 
-            //Console.WriteLine("Now select the type of role");
-            // fazer um get all de todas as roles mostrando em um foreach o id e o nome da role
-            // e assim fazer o insert na tabela associativa UserRole com os ids.
+            Console.WriteLine("============================================================");
+            foreach (var role in roles)
+            {
+                Console.WriteLine($"Id: {role.Id} - Name: {role.Name}");
+            }
+            Console.WriteLine("============================================================");
+            Console.Write("Please choose the Role ID: ");
+            int.TryParse(Console.ReadLine(), out int roleId);
+            Role roleSelected = roles.First(role => role.Id == roleId);
+            int roleIdSelected = roleSelected.Id;
 
-            // code
+            Console.WriteLine("======================");
+            Console.WriteLine($"User: {userSelected.Name} - Id: {userSelected.Id} ");
+            Console.WriteLine($"Role: {roleSelected.Name} - Id: {roleSelected.Id} ");
+            Console.WriteLine("Please press 1 to continue or any button to leave this action.");
+            int.TryParse(Console.ReadLine(), out int inputOption);
+            if (inputOption == 1)
+            {
+                UserRole userRole = new UserRole { RoleId = roleIdSelected, UserId = userIdSelected };
 
-            //Console.WriteLine("======================");
-            //Console.WriteLine("User bounded with success.");
+                var userRoles = new UserRoleRepository(_connection);
+                userRoles.Create(userRole);
+
+                Console.WriteLine("======================");
+                Console.WriteLine($"User: {userSelected.Name} assigned to the role: {roleSelected.Name}.");
+                Console.WriteLine("Press any button to return to main screen.");
+                Console.ReadLine();
+                return;
+            }
+
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
             return;
