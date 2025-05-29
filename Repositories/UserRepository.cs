@@ -41,5 +41,13 @@ namespace Blog.Repositories
 
             return users;
         }
+        public IEnumerable<User> GetUsersByName(string name)
+        {
+            var query = "SELECT [Id], [Name], [Email] FROM [User] WHERE [Name] like @username;";
+
+            IEnumerable<User> users = _connection.Query<User>(query, new { username = $"%{name}%" });
+
+            return users;
+        }
     }
 }

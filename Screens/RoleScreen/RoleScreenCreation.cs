@@ -37,6 +37,7 @@ namespace Blog.Screens.RoleScreen
             Console.WriteLine("Role Created.");
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
+            return;
         }
     }
 }

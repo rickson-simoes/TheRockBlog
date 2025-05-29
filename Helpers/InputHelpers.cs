@@ -21,7 +21,7 @@
 
                 if (string.IsNullOrWhiteSpace(name))
                 {
-                    Console.WriteLine($"{field} can't be empty or white space, pelase try again.");
+                    Console.WriteLine($"{field} can't be empty or white space, please try again.");
                 }
             }
             return name;

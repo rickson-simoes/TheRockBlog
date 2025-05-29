@@ -20,7 +20,7 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("To create an user we are going to need a few informations");
             var name = InputHelpers.NotNullOrWhiteSpace("Name");
             var email = InputHelpers.NotNullOrWhiteSpace("E-mail");
-            var pwd = InputHelpers.NotNullOrWhiteSpace("Password");            
+            var pwd = InputHelpers.NotNullOrWhiteSpace("Password");
             var bio = InputHelpers.NotNullOrWhiteSpace("Please talk a bit about you (BIO)");
 
             var mathRandom = new Random();
@@ -42,6 +42,7 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("User Created.");
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
+            return;
         }
     }
 }
