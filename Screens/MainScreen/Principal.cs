@@ -45,8 +45,8 @@ namespace Blog.Screens.MainScreen
                         break;
 
                     case 3:
-                        var userBoundToRole = new UserBoundToRole(_connection);
-                        userBoundToRole.Bound();
+                        var userRole = new UserAssignRole(_connection);
+                        userRole.Assign();
                         break;
                 }
             }

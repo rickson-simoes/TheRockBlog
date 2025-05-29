@@ -5,20 +5,20 @@ using Microsoft.Data.SqlClient;
 
 namespace Blog.Screens.UserScreen
 {
-    public class UserBoundToRole
+    public class UserAssignRole
     {
         private readonly SqlConnection _connection;
-        public UserBoundToRole(SqlConnection connection)
+        public UserAssignRole(SqlConnection connection)
         {
             _connection = connection;
         }
 
-        public void Bound()
+        public void Assign()
         {
             Console.WriteLine("---------------------------------");
-            Console.WriteLine("=========== Screen: Bound user to role");
+            Console.WriteLine("=========== Screen: Assign user to a role");
             Console.WriteLine("---------------------------------");
-            Console.WriteLine("Say the name of the user to be bound");
+            Console.WriteLine("Say the name of the user to be assigned with a role");
             Console.WriteLine("and we will show you a list of ids and names if possible:");
             var name = InputHelpers.NotNullOrWhiteSpace("Name");
             var users = new UserRepository(_connection).GetUsersByName(name);

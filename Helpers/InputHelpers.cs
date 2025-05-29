@@ -16,7 +16,6 @@
             while (string.IsNullOrWhiteSpace(name))
             {
                 Console.WriteLine($"The {field} can't be null");
-                Console.WriteLine($"Please try again by providing the {field}:");
                 name = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(name))
