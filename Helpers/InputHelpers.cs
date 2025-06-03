@@ -10,18 +10,14 @@
         /// <returns>A valid string that is not null or with white spaces.</returns>
         public static string NotNullOrWhiteSpace(string field)
         {
-            Console.WriteLine($"{field}:");
+            Console.Write($"\n{field}: ");
             var name = Console.ReadLine();
 
             while (string.IsNullOrWhiteSpace(name))
             {
-                Console.WriteLine($"The {field} can't be null");
+                Console.WriteLine($"{field} can't be empty or white space.");
+                Console.Write($"\n{field}: ");
                 name = Console.ReadLine();
-
-                if (string.IsNullOrWhiteSpace(name))
-                {
-                    Console.WriteLine($"{field} can't be empty or white space, please try again.");
-                }
             }
             return name;
         }

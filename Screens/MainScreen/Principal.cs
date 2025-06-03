@@ -26,6 +26,7 @@ namespace Blog.Screens.MainScreen
                 Console.WriteLine("2 - Create a Role.");
                 Console.WriteLine("3 - Bind an user to a Role.");
                 Console.WriteLine("=================================");
+                Console.Write("\nOption: ");
                 var input = int.TryParse(Console.ReadLine(), out int optSelected);
 
                 Console.Clear();

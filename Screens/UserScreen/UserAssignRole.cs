@@ -2,6 +2,7 @@
 using Blog.Models;
 using Blog.Repositories;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Blog.Screens.UserScreen
 {
@@ -18,47 +19,96 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("---------------------------------");
             Console.WriteLine("=========== Screen: Assign user to a role");
             Console.WriteLine("---------------------------------");
-            Console.WriteLine("Say the name of the user to be assigned with a role");
-            Console.WriteLine("and we will show you a list of ids and names if possible:");
-            var name = InputHelpers.NotNullOrWhiteSpace("Name");
-            var users = new UserRepository(_connection).GetUsersByName(name);
 
-            while (users.Count() == 0)
+            var users = new UserRepository(_connection);
+            var roles = new Repository<Role>(_connection);
+
+            User selectedUser = SelectUser(users);
+
+            if (selectedUser.Id == 0)
             {
-                Console.Clear();
-                Console.WriteLine("Whoops... seems like there's no users with that name.");
-                Console.WriteLine("Want to try again? If no type 0 to return to main.");
-                name = InputHelpers.NotNullOrWhiteSpace("Name");
-
-                if (name == "0")
-                    return;
-
-                users = new UserRepository(_connection).GetUsersByName(name);
+                return;
             }
 
+            SelectRole(roles, selectedUser);
+
+            Console.WriteLine("Press any button to return to main screen.");
+            Console.ReadLine();
+            return;
+        }
+
+        private User SelectUser(UserRepository UserRepository)
+        {
+            var name = InputHelpers.NotNullOrWhiteSpace("Name");
+            var users = UserRepository.GetUsersByName(name);
+
+            users = CheckUsers(users, name);
+
+            if (users.IsNullOrEmpty())
+            {
+                return new User();
+            }
+
+            User userSelected = UserSelection(users);
+
+            if (userSelected == null || userSelected.Id == 0)
+            {
+                return new User();
+            }
+
+            int userIdSelected = userSelected.Id;
+
+            Console.Clear();
+            Console.WriteLine($"User to be assigned:");
+            Console.WriteLine($"Name: {userSelected.Name}");
+            Console.WriteLine($"Email:{userSelected.Email}");
+            Console.WriteLine("\nPress any button to move forward with the assignment.");
+            Console.ReadLine();
+            Console.Clear();
+
+            return userSelected;
+        }
+
+        private User UserSelection(IEnumerable<User> users)
+        {
+            User? userSelected = UserList(users);
+
+            while (userSelected == null)
+            {
+                Console.Clear();
+                Console.WriteLine("That ID does not exist in the list. Please choose any ID that is shown in the list.");
+                Console.WriteLine("If you want to leave this action just type 0. \n");
+                userSelected = UserList(users);
+            }
+
+            return userSelected;
+        }
+
+        private User? UserList(IEnumerable<User> users)
+        {
             Console.WriteLine("============================================================");
             foreach (var user in users)
             {
                 Console.WriteLine($"Id: {user.Id} - User: {user.Name} - Email: {user.Email}");
-                Console.WriteLine($"---");
             }
             Console.WriteLine("============================================================");
             Console.WriteLine();
 
-            Console.Write("Please choose the user ID which you want to assign a role: ");
+            Console.Write("Please choose the user ID to which you want to assign a role: ");
             int.TryParse(Console.ReadLine(), out int userId);
-            User userSelected = users.First(usr => usr.Id == userId);
-            int userIdSelected = userSelected.Id;
+            if (userId == 0)
+            {
+                return new User { Id = 0};
+            }
+            User userSelected = users.FirstOrDefault(usr => usr.Id == userId);
 
-            Console.Clear();
-            Console.WriteLine("User to be assigned:");
-            Console.WriteLine($"{userSelected.Name}");
-            Console.WriteLine($"{userSelected.Email}");
-            Console.WriteLine($"{userSelected.Bio}");
-            Console.WriteLine($"{userSelected.Slug}");
-            Console.WriteLine();
+            return userSelected;
+        }
+
+        private void SelectRole(Repository<Role> RoleRepository, User user) 
+        {
             Console.WriteLine("Now select the type of role");
-            var roles = new Repository<Role>(_connection).Get();
+            var roles = RoleRepository.Get();
 
             Console.WriteLine("============================================================");
             foreach (var role in roles)
@@ -68,31 +118,45 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("============================================================");
             Console.Write("Please choose the Role ID: ");
             int.TryParse(Console.ReadLine(), out int roleId);
-            Role roleSelected = roles.First(role => role.Id == roleId);
-            int roleIdSelected = roleSelected.Id;
-
-            Console.WriteLine("======================");
-            Console.WriteLine($"User: {userSelected.Name} - Id: {userSelected.Id} ");
-            Console.WriteLine($"Role: {roleSelected.Name} - Id: {roleSelected.Id} ");
-            Console.WriteLine("Please press 1 to continue or any button to leave this action.");
-            int.TryParse(Console.ReadLine(), out int inputOption);
-            if (inputOption == 1)
+            Role roleSelected = roles.FirstOrDefault(role => role.Id == roleId);
+            
+            if(roleSelected == null)
             {
-                UserRole userRole = new UserRole { RoleId = roleIdSelected, UserId = userIdSelected };
-
-                var userRoles = new UserRoleRepository(_connection);
-                userRoles.Create(userRole);
-
-                Console.WriteLine("======================");
-                Console.WriteLine($"User: {userSelected.Name} assigned to the role: {roleSelected.Name}.");
-                Console.WriteLine("Press any button to return to main screen.");
-                Console.ReadLine();
                 return;
             }
 
-            Console.WriteLine("Press any button to return to main screen.");
-            Console.ReadLine();
-            return;
+            int roleIdSelected = roleSelected.Id;
+
+            Console.Clear();
+            Console.WriteLine($"User: {user.Name} - Id: {user.Id} ");
+            Console.WriteLine($"Role: {roleSelected.Name} - Id: {roleSelected.Id} ");
+            Console.Write("\nPlease press 1 to continue or any button to leave this action: ");
+            int.TryParse(Console.ReadLine(), out int inputOption);
+            if (inputOption == 1)
+            {
+                UserRole userRole = new UserRole { RoleId = roleIdSelected, UserId = user.Id };
+
+                var userRoles = new UserRoleRepository(_connection);
+                userRoles.Create(userRole);
+            }
         }
+
+        private IEnumerable<User> CheckUsers(IEnumerable<User> users, string name)
+        {
+            while (users.Count() == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("No users with that name, try again or type 0 to return to main.");
+                name = InputHelpers.NotNullOrWhiteSpace("Name");
+
+                if (name == "0")
+                    return Enumerable.Empty<User>();
+
+                users = new UserRepository(_connection).GetUsersByName(name);
+            }
+
+            return users;
+        }
+
     }
 }
