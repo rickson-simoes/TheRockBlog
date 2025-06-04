@@ -1,9 +1,10 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Blog.Interfaces;
+using Dapper.Contrib.Extensions;
 
 namespace Blog.Models
 {
     [Table("Post")]
-    public class Post
+    public class Post : IEntity
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
