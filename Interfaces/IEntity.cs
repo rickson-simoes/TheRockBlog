@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Models
+namespace Blog.Interfaces
 {
     public interface IEntity
     {

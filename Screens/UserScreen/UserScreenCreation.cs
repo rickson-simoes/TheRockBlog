@@ -23,8 +23,7 @@ namespace Blog.Screens.UserScreen
             var pwd = InputHelpers.NotNullOrWhiteSpace("Password");
             var bio = InputHelpers.NotNullOrWhiteSpace("Please talk a bit about you (BIO)");
 
-            var mathRandom = new Random();
-            var slug = name.ToLower().Replace(" ", "") + "#" + mathRandom.Next(10000, 99999);
+            var slug = name.ToLower().Replace(" ", "") + "#" + InputHelpers.MathRandomNumber(10000, 99999);
 
             var userRepository = new Repository<User>(_connection);
             var user = new User
