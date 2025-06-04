@@ -1,4 +1,5 @@
 ﻿
+using Blog.Interfaces;
 using Dapper.Contrib.Extensions;
 
 namespace Blog.Models

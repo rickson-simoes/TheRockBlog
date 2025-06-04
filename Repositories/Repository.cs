@@ -1,4 +1,4 @@
-﻿using Blog.Models;
+﻿using Blog.Interfaces;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
 
