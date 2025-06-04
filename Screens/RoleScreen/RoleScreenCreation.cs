@@ -20,7 +20,9 @@ namespace Blog.Screens.RoleScreen
             Console.WriteLine("---------------------------------");
             Console.WriteLine("=========== Screen: Role creation");
             Console.WriteLine("---------------------------------");
-            Console.WriteLine("Create a role by providing the name and the slug");
+
+            Console.WriteLine("\n Create a role by providing the name and the slug");
+
             var name = InputHelpers.NotNullOrWhiteSpace("Name");
             var slug = InputHelpers.NotNullOrWhiteSpace("Slug");
 

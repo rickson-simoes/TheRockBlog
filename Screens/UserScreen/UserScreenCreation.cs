@@ -17,7 +17,8 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("---------------------------------");
             Console.WriteLine("=========== Screen: User creation");
             Console.WriteLine("---------------------------------");
-            Console.WriteLine("To create an user we are going to need a few informations");
+
+            Console.WriteLine("\n To create an user we are going to need a few informations");
             var name = InputHelpers.NotNullOrWhiteSpace("Name");
             var email = InputHelpers.NotNullOrWhiteSpace("E-mail");
             var pwd = InputHelpers.NotNullOrWhiteSpace("Password");

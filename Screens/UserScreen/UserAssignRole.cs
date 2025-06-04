@@ -20,6 +20,8 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("=========== Screen: Assign user to a role");
             Console.WriteLine("---------------------------------");
 
+            Console.WriteLine("\n Assign an user to a role by choosing an user and a type of role.");
+
             var users = new UserRepository(_connection);
             var roles = new Repository<Role>(_connection);
 
