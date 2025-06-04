@@ -22,7 +22,7 @@ namespace Blog.Screens.CategoryScreen
             Console.WriteLine("\nProvide a name for the new category that you want to create");
 
             var name = InputHelpers.NotNullOrWhiteSpace("Name");
-            var slug = name + '-' + InputHelpers.MathRandomNumber(0, 100);
+            var slug = name.Trim().ToLower().Replace(" ","-");
 
             Category category = new Category { 
                 Name = name,
