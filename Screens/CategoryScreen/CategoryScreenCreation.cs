@@ -1,22 +1,25 @@
 ﻿using Blog.Helpers;
 using Blog.Models;
+using Blog.Repositories;
 using Microsoft.Data.SqlClient;
 
-namespace Blog.Screens.NewFolder
+namespace Blog.Screens.CategoryScreen
 {
-    public class CategoryCreation
+    public class CategoryScreenCreation
     {
         private readonly SqlConnection _connection;
-        public CategoryCreation(SqlConnection connection)
+        public CategoryScreenCreation(SqlConnection connection)
         {
             _connection = connection;
         }
 
-        public void CreateCategory()
+        public void Create()
         {
             Console.WriteLine("---------------------------------");
             Console.WriteLine("=========== Screen: Create a Category.");
             Console.WriteLine("---------------------------------");
+
+            Console.WriteLine("\nProvide a name for the new category that you want to create");
 
             var name = InputHelpers.NotNullOrWhiteSpace("Name");
             var slug = name + '-' + InputHelpers.MathRandomNumber(0, 100);
@@ -25,6 +28,15 @@ namespace Blog.Screens.NewFolder
                 Name = name,
                 Slug = slug
             };
+
+            var dbCategory = new Repository<Category>(_connection);
+
+            dbCategory.Create(category);
+            Console.WriteLine("======================");
+            Console.WriteLine("Category Created.");
+            Console.WriteLine("Press any button to return to main screen.");
+            Console.ReadLine();
+            return;
         }
     }
 }

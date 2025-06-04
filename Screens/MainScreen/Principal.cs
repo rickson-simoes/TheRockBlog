@@ -1,4 +1,5 @@
-﻿using Blog.Screens.RoleScreen;
+﻿using Blog.Screens.CategoryScreen;
+using Blog.Screens.RoleScreen;
 using Blog.Screens.UserScreen;
 using Microsoft.Data.SqlClient;
 
@@ -49,6 +50,11 @@ namespace Blog.Screens.MainScreen
                     case 3:
                         var userRole = new UserAssignRole(_connection);
                         userRole.Assign();
+                        break;
+
+                    case 4:
+                        var categoryCreation = new CategoryScreenCreation(_connection);
+                        categoryCreation.Create();
                         break;
                 }
             }
