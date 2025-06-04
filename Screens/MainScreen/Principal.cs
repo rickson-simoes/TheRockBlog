@@ -1,4 +1,5 @@
 ﻿using Blog.Screens.CategoryScreen;
+using Blog.Screens.PostScreen;
 using Blog.Screens.RoleScreen;
 using Blog.Screens.TagScreen;
 using Blog.Screens.UserScreen;
@@ -29,6 +30,7 @@ namespace Blog.Screens.MainScreen
                 Console.WriteLine("3 - Bind an user to a Role.");
                 Console.WriteLine("4 - Create a Category.");
                 Console.WriteLine("5 - Create a tag.");
+                Console.WriteLine("6 - Create a post.");
                 Console.WriteLine("=================================");
                 Console.Write("\nOption: ");
                 var input = int.TryParse(Console.ReadLine(), out int optSelected);
@@ -62,6 +64,11 @@ namespace Blog.Screens.MainScreen
                     case 5:
                         var tagCreation = new TagScreenCreation(_connection);
                         tagCreation.Create();
+                        break;
+
+                    case 6:
+                        var postCreation = new PostScreenCreation(_connection);
+                        postCreation.Create();
                         break;
                 }
             }
