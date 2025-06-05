@@ -1,5 +1,6 @@
 ﻿using Blog.Repositories;
 using Microsoft.Data.SqlClient;
+using System.Text;
 
 namespace Blog.Screens.UserScreen
 {
@@ -19,24 +20,24 @@ namespace Blog.Screens.UserScreen
 
             var userRepository = new UserRepository(_connection);
             var users = userRepository.GetWithRoles();
-            string userInfo = "";
+            StringBuilder sBuilder = new StringBuilder();
 
             foreach (var user in users)
             {
                 var getRolesCount = user.Roles.Count;
-                userInfo += user.Name + ", ";
-                userInfo += user.Email;
+                sBuilder.Append(user.Name + ", ");
+                sBuilder.Append(user.Email);
 
                 if (user.Roles.Count != 0)
                 {
-                    userInfo += " | " + (getRolesCount > 1 ? "Roles: " : "Role: ");
+                    sBuilder.Append(" | " + (getRolesCount > 1 ? "Roles: " : "Role: "));
                     var allRoles = user.Roles.Select(f => f.Name);
-                    userInfo += string.Join(", ", allRoles) + '.';
+                    sBuilder.Append(string.Join(", ", allRoles) + '.');
                 }
 
-                Console.WriteLine(userInfo);
+                Console.WriteLine(sBuilder.ToString());
                 Console.WriteLine($"====================================");
-                userInfo = "";
+                sBuilder.Clear();
             }
 
             Console.WriteLine("Press any button to return to main screen.");
