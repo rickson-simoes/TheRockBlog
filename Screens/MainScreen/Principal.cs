@@ -34,7 +34,7 @@ namespace Blog.Screens.MainScreen
                 Console.WriteLine("7 - Assign a Post to a Tag.");
                 Console.WriteLine("=================================");
                 Console.Write("\nOption: ");
-                var input = int.TryParse(Console.ReadLine(), out int optSelected);
+                int.TryParse(Console.ReadLine(), out int optSelected);
 
                 Console.Clear();
                 switch(optSelected)
