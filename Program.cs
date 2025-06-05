@@ -33,28 +33,6 @@ namespace Blog
                 Console.WriteLine("============================");
             }           
         }
-        public static void ReadUsersWithRoles(SqlConnection connection)
-        {
-            var userRepository = new UserRepository(connection);
-            var users = userRepository.GetWithRoles();
-
-            foreach (var user in users)
-            {
-                Console.WriteLine($"Id: {user.Id}");
-                Console.WriteLine($"Name: {user.Name}");
-                Console.WriteLine($"Email: {user.Email}");
-                Console.WriteLine($"PasswordHash: {user.PasswordHash}");
-                Console.WriteLine($"Bio: {user.Bio}");
-                Console.WriteLine($"Image: {user.Image}");
-                Console.WriteLine($"Slug: {user.Slug}");
-                foreach (var role in user.Roles)
-                {                    
-                    Console.WriteLine($"Role Id: {role.Id}");
-                    Console.WriteLine($"Role Name: {role.Name}");
-                    Console.WriteLine($"Role Slug: {role.Slug}");                    
-                }
-                Console.WriteLine($"====================================");
-            }
-        }
+        
     }
 }

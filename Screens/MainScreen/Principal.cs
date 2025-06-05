@@ -32,6 +32,7 @@ namespace Blog.Screens.MainScreen
                 Console.WriteLine("5 - Create a tag.");
                 Console.WriteLine("6 - Create a post.");
                 Console.WriteLine("7 - Assign a Post to a Tag.");
+                Console.WriteLine("8 - List users.");
                 Console.WriteLine("=================================");
                 Console.Write("\nOption: ");
                 int.TryParse(Console.ReadLine(), out int optSelected);
@@ -53,7 +54,7 @@ namespace Blog.Screens.MainScreen
                         break;
 
                     case 3:
-                        var userRole = new UserAssignRole(_connection);
+                        var userRole = new UserScreenAssignRole(_connection);
                         userRole.Assign();
                         break;
 
@@ -75,6 +76,11 @@ namespace Blog.Screens.MainScreen
                     case 7:
                         var postTag = new PostScreenAssignTag(_connection);
                         postTag.Assign();
+                        break;
+
+                    case 8:
+                        var users = new UserScreenGetUsers(_connection);
+                        users.Get();
                         break;
                 }
             }

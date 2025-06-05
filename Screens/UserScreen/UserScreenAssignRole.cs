@@ -6,10 +6,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Blog.Screens.UserScreen
 {
-    public class UserAssignRole
+    public class UserScreenAssignRole
     {
         private readonly SqlConnection _connection;
-        public UserAssignRole(SqlConnection connection)
+        public UserScreenAssignRole(SqlConnection connection)
         {
             _connection = connection;
         }
@@ -27,15 +27,13 @@ namespace Blog.Screens.UserScreen
 
             User selectedUser = SelectUser(users);
 
-            if (selectedUser.Id == 0)
-            {
-                return;
-            }
+            if (selectedUser.Id == 0) return;            
 
             SelectRole(roles, selectedUser);
 
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
+
             return;
         }
 
