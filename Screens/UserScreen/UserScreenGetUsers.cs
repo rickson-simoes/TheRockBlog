@@ -14,7 +14,7 @@ namespace Blog.Screens.UserScreen
         public void Get()
         {
             Console.WriteLine("---------------------------------");
-            Console.WriteLine("=========== Screen: List users.");
+            Console.WriteLine("=========== Screen: List users and their roles.");
             Console.WriteLine("---------------------------------");
 
             var userRepository = new UserRepository(_connection);
