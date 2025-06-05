@@ -27,10 +27,11 @@ namespace Blog.Screens.MainScreen
                 Console.WriteLine("0 - To exit.");
                 Console.WriteLine("1 - Create an User.");
                 Console.WriteLine("2 - Create a Role.");
-                Console.WriteLine("3 - Bind an user to a Role.");
+                Console.WriteLine("3 - Assign an User to a Role.");
                 Console.WriteLine("4 - Create a Category.");
                 Console.WriteLine("5 - Create a tag.");
                 Console.WriteLine("6 - Create a post.");
+                Console.WriteLine("7 - Assign a Post to a Tag.");
                 Console.WriteLine("=================================");
                 Console.Write("\nOption: ");
                 var input = int.TryParse(Console.ReadLine(), out int optSelected);
@@ -69,6 +70,11 @@ namespace Blog.Screens.MainScreen
                     case 6:
                         var postCreation = new PostScreenCreation(_connection);
                         postCreation.Create();
+                        break;
+
+                    case 7:
+                        var postTag = new PostScreenAssignTag(_connection);
+                        postTag.Assign();
                         break;
                 }
             }

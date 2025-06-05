@@ -14,7 +14,7 @@ namespace Blog.Repositories
 
         public void Create(UserRole userRole)
         {
-            var userRoles = _connection.Insert<UserRole>(userRole);
+            _connection.Insert<UserRole>(userRole);
         }
     }
 }
