@@ -24,8 +24,6 @@ namespace Blog.Screens.PostScreen
             Console.WriteLine("=========== Screen: Assign a Post to a tag.");
             Console.WriteLine("---------------------------------");
 
-            // vincular o ID do post com id da tag na tabela PostTag
-
             Repository<Post> postRepository = new Repository<Post>(_connection);
             Repository<Tag> tagRepository = new Repository<Tag>(_connection);
 
