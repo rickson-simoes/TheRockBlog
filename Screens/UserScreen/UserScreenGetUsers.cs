@@ -19,42 +19,25 @@ namespace Blog.Screens.UserScreen
 
             var userRepository = new UserRepository(_connection);
             var users = userRepository.GetWithRoles();
-            var infos = "";
-            int count = 0;
+            string userInfo = "";
 
             foreach (var user in users)
             {
-                var getCount = user.Roles.Count;
-                infos += user.Name + ", ";
+                var getRolesCount = user.Roles.Count;
+                userInfo += user.Name + ", ";
+                userInfo += user.Email;
 
-                if (user.Roles.Count == 0)
-                    infos += user.Email + ".";
-                else
+                if (user.Roles.Count != 0)
                 {
-                    infos += user.Email + ", Roles: ";
-
-                    foreach (var role in user.Roles)
-                    {
-                        count++;
-
-                        if (count == getCount)
-                        {
-                            infos += role.Name + ".";
-                        }
-                        else
-                        {
-                            infos += role.Name + ", ";
-                        }
-                    }
-
+                    userInfo += " | " + (getRolesCount > 1 ? "Roles: " : "Role: ");
+                    var allRoles = user.Roles.Select(f => f.Name);
+                    userInfo += string.Join(", ", allRoles) + '.';
                 }
 
-                Console.WriteLine(infos);
+                Console.WriteLine(userInfo);
                 Console.WriteLine($"====================================");
-                count = 0;
-                infos = "";
+                userInfo = "";
             }
-
 
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
