@@ -104,7 +104,7 @@ namespace Blog.Screens.PostScreen
             var PostTag = new PostTag { PostId = post.Id, TagId = tag.Id };
 
             postTagRepo.Create(PostTag);
-            Console.WriteLine("======================");
+            Console.WriteLine("\n ======================");
             Console.WriteLine("Post assigned with a tag.");
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
