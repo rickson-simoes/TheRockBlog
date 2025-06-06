@@ -19,7 +19,7 @@ namespace Blog.Repositories
                           FROM [Category] as C LEFT JOIN [Post] as P ON
                           [C].[Id] = [P].[CategoryId] group by [C].[Name];";
 
-            var QConnection = _connection.Query<CategoryPostCountDto >(query);
+            var QConnection = _connection.Query<CategoryPostCountDto>(query);
 
             return QConnection;
         }
