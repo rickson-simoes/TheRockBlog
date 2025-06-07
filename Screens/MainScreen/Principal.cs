@@ -34,6 +34,7 @@ namespace Blog.Screens.MainScreen
                 Console.WriteLine("7 - Assign a Post to a Tag.");
                 Console.WriteLine("8 - List users.");
                 Console.WriteLine("9 - List categories with posts count.");
+                Console.WriteLine("10 - List Tags with posts count.");
                 Console.WriteLine("=================================");
                 Console.Write("\nOption: ");
                 int.TryParse(Console.ReadLine(), out int optSelected);
@@ -87,6 +88,11 @@ namespace Blog.Screens.MainScreen
                     case 9:
                         var categoryPostCountList = new CategoryScreenGetPostCount(_connection);
                         categoryPostCountList.Get();
+                        break;
+
+                    case 10:
+                        var tagPostCountList = new TagScreenGetPostCount(_connection);
+                        tagPostCountList.Get();
                         break;
                 }
             }

@@ -15,7 +15,7 @@ namespace Blog.Repositories
 
         public IEnumerable<CategoryPostCountDto> GetCategoryPostCount()
         {
-            var query = @"SELECT TOP (1000) [C].[Name], COUNT([C].[Name]) as Amount
+            var query = @"SELECT TOP (1000) [C].[Name], COUNT([C].[Name]) as Quantity
                           FROM [Category] as C LEFT JOIN [Post] as P ON
                           [C].[Id] = [P].[CategoryId] group by [C].[Name];";
 

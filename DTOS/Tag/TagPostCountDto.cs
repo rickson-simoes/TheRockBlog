@@ -1,6 +1,6 @@
-﻿namespace Blog.DTOS.Category
+﻿namespace Blog.DTOS.Tag
 {
-    public class CategoryPostCountDto
+    public class TagPostCountDto
     {
         public string Name { get; set; }
         public int Quantity { get; set; }

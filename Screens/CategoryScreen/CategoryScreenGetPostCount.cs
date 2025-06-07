@@ -35,7 +35,7 @@ namespace Blog.Screens.CategoryScreen
 
             foreach (var catPost in categoriesPosts)
             {
-                Console.WriteLine($"Category: {catPost.Name} - Counting: {catPost.Amount}");
+                Console.WriteLine($"Category: {catPost.Name} - Counting: {catPost.Quantity}");
                 Console.WriteLine("-------------");
             }
 
