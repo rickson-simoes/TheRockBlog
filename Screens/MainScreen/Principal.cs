@@ -36,6 +36,7 @@ namespace Blog.Screens.MainScreen
                 Console.WriteLine("9 - List categories with posts count.");
                 Console.WriteLine("10 - List Tags with posts count.");
                 Console.WriteLine("11 - List posts with the selected category.");
+                Console.WriteLine("12 - List posts with categories.");
                 Console.WriteLine("=================================");
                 Console.Write("\nOption: ");
                 int.TryParse(Console.ReadLine(), out int optSelected);
@@ -99,6 +100,11 @@ namespace Blog.Screens.MainScreen
                     case 11:
                         var postCategoryCountList = new PostScreenGetOneCategory(_connection);
                         postCategoryCountList.Get();
+                        break;
+
+                    case 12:
+                        var postCategoryList = new PostScreenGetCategories(_connection);
+                        postCategoryList.Get();
                         break;
                 }
             }

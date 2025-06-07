@@ -1,13 +1,6 @@
 ﻿using Blog.DTOS.Post;
-using Blog.DTOS.Tag;
-using Blog.Models;
 using Dapper;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.Repositories
 {
@@ -28,6 +21,17 @@ namespace Blog.Repositories
                         FROM [Blog].[dbo].[Post] where CategoryId = @CategoryId";
 
             var QConnection = _connection.Query<PostGetOneCategoryDto>(query, new { CategoryId = categoryId });
+
+            return QConnection;
+        }
+
+        public IEnumerable<PostCategoryDto> GetAllPostsWithCategory()
+        {
+            var query = @"SELECT C.Name, P.Title, P.Body, P.CreateDate as [Date] FROM [Blog].[dbo].[Post] as P
+                          LEFT JOIN Category as C on
+                          p.CategoryId = C.Id;";
+
+            var QConnection = _connection.Query<PostCategoryDto>(query);
 
             return QConnection;
         }
