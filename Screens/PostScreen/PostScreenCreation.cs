@@ -62,11 +62,18 @@ namespace Blog.Screens.PostScreen
             };
 
             var post = new Repository<Post>(_connection);
-            post.Create(postPayload);
 
+            try
+            {
+                post.Create(postPayload);
+                Console.WriteLine("======================");
+                Console.WriteLine("Post Created.");
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine($"Whoops... {err.Message}");
+            }
 
-            Console.WriteLine("======================");
-            Console.WriteLine("Post Created.");
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
             return;

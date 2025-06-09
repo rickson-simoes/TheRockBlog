@@ -31,9 +31,18 @@ namespace Blog.Screens.CategoryScreen
 
             var dbCategory = new Repository<Category>(_connection);
 
-            dbCategory.Create(category);
-            Console.WriteLine("======================");
-            Console.WriteLine("Category Created.");
+            
+            try
+            {
+                dbCategory.Create(category);
+                Console.WriteLine("======================");
+                Console.WriteLine("Category Created.");
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine($"Whoops... {err.Message}");
+            }
+            
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
             return;

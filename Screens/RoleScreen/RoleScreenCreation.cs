@@ -33,10 +33,18 @@ namespace Blog.Screens.RoleScreen
             };
 
             var roleRepository = new Repository<Role>(_connection);
-            roleRepository.Create(role);
 
-            Console.WriteLine("======================");
-            Console.WriteLine("Role Created.");
+            try
+            {
+                roleRepository.Create(role);
+                Console.WriteLine("======================");
+                Console.WriteLine("Role Created.");
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine($"Whoops... {err.Message}");
+            }
+
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
             return;

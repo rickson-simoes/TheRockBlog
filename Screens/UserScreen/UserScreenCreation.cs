@@ -2,6 +2,7 @@
 using Blog.Models;
 using Blog.Repositories;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace Blog.Screens.UserScreen
 {
@@ -37,9 +38,18 @@ namespace Blog.Screens.UserScreen
                 Slug = slug
             };
 
-            userRepository.Create(user);
-            Console.WriteLine("======================");
-            Console.WriteLine("User Created.");
+
+            try
+            {
+                userRepository.Create(user);
+                Console.WriteLine("======================");
+                Console.WriteLine("User Created.");
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine($"Whoops... {err.Message}");
+            }
+
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
             return;

@@ -32,9 +32,17 @@ namespace Blog.Screens.TagScreen
 
             var dbTag = new Repository<Tag>(_connection);
 
-            dbTag.Create(tag);
-            Console.WriteLine("======================");
-            Console.WriteLine("Tag Created.");
+            try
+            {
+                dbTag.Create(tag);
+                Console.WriteLine("======================");
+                Console.WriteLine("Tag Created.");
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine($"Whoops... {err.Message}");
+            }
+
             Console.WriteLine("Press any button to return to main screen.");
             Console.ReadLine();
             return;
