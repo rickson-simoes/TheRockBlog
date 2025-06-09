@@ -4,6 +4,11 @@ using Microsoft.Data.SqlClient;
 
 namespace Blog.Repositories
 {
+    /// <summary>
+    /// Note.: In this class I can remove the _connection prop
+    /// since I already have the connection from the inherited Repository class
+    /// But I'll leave like this.
+    /// </summary>
     public class UserRepository : Repository<User>
     {
         private readonly SqlConnection _connection;
