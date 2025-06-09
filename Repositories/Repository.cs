@@ -36,7 +36,7 @@ namespace Blog.Repositories
         }
         public void Delete(int id)
         {
-            if (id != 0)
+            if (id == 0)
                 return;
 
             var entity = _connection.Get<TModel>(id);
