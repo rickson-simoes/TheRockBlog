@@ -1,5 +1,7 @@
-Basic Setup:
+<h3>Basic Setup:</h3>
 
-1 - Database with data -> rockblog.bacpac
-2 - String connection -> program.cs
-3 - Execute :)
+<ul>
+<li> - Database with data -> rockblog.bacpac </li>
+<li> - String connection -> program.cs </li>
+<li> - Execute :) </li>
+<ul>
