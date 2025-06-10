@@ -30,11 +30,11 @@ namespace Blog.Screens.TagScreen
                 Slug = slug
             };
 
-            var dbTag = new TagRepository(_connection);
+            var tagRepository = new TagRepository(_connection);
 
             try
             {
-                dbTag.Create(tag);
+                tagRepository.Create(tag);
                 Console.WriteLine("======================");
                 Console.WriteLine("Tag Created.");
             }
