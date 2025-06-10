@@ -29,8 +29,7 @@ namespace Blog.Screens.CategoryScreen
                 Slug = slug
             };
 
-            var dbCategory = new Repository<Category>(_connection);
-
+            var dbCategory = new CategoryRepository(_connection);
             
             try
             {

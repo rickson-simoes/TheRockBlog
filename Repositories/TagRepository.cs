@@ -1,17 +1,13 @@
 ﻿using Blog.DTOS.Tag;
+using Blog.Models;
 using Dapper;
 using Microsoft.Data.SqlClient;
 
 namespace Blog.Repositories
 {
-    public class TagRepository
+    public class TagRepository : Repository<Tag>
     {
-        private readonly SqlConnection _connection;
-
-        public TagRepository(SqlConnection connection)
-        {
-            _connection = connection;
-        }
+        public TagRepository(SqlConnection connection) : base(connection) { }
 
         public IEnumerable<TagPostCountDto> GetTagPostCount()
         {

@@ -1,5 +1,4 @@
-﻿using Blog.Models;
-using Blog.Repositories;
+﻿using Blog.Repositories;
 using Blog.Screens.MainScreen;
 using Microsoft.Data.SqlClient;
 
@@ -22,7 +21,7 @@ namespace Blog
         }
         public static void ReadUsers(SqlConnection connection)
         {
-            var userRepository = new Repository<User>(connection);
+            var userRepository = new UserRepository(connection);
             var users = userRepository.Get();
 
             foreach (var user in users)

@@ -2,11 +2,6 @@
 using Blog.Models;
 using Blog.Repositories;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.Screens.PostScreen
 {
@@ -25,7 +20,7 @@ namespace Blog.Screens.PostScreen
             Console.WriteLine("=========== Screen: Get all Posts choosing one category.");
             Console.WriteLine("---------------------------------\n");
 
-            Repository<Category> categoryRepository = new Repository<Category>(_connection);
+            Repository<Category> categoryRepository = new CategoryRepository(_connection);
             var categories = categoryRepository.Get();
 
             foreach (var category in categories)

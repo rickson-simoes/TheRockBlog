@@ -3,7 +3,6 @@ using Blog.Models;
 using Blog.Repositories;
 using Microsoft.Data.SqlClient;
 
-
 namespace Blog.Screens.RoleScreen
 {
     public class RoleScreenCreation
@@ -32,7 +31,7 @@ namespace Blog.Screens.RoleScreen
                 Slug = slug,
             };
 
-            var roleRepository = new Repository<Role>(_connection);
+            var roleRepository = new RoleRepository(_connection);
 
             try
             {

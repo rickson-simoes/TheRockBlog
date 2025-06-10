@@ -1,11 +1,6 @@
 ﻿using Blog.Models;
 using Blog.Repositories;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.Screens.PostScreen
 {
@@ -24,8 +19,8 @@ namespace Blog.Screens.PostScreen
             Console.WriteLine("=========== Screen: Assign a Post to a tag.");
             Console.WriteLine("---------------------------------");
 
-            Repository<Post> postRepository = new Repository<Post>(_connection);
-            Repository<Tag> tagRepository = new Repository<Tag>(_connection);
+            Repository<Post> postRepository = new PostRepository(_connection);
+            Repository<Tag> tagRepository = new TagRepository(_connection);
 
             var postSelected = selectAPost(postRepository);
             if (postSelected == null)

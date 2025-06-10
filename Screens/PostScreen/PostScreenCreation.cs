@@ -22,8 +22,8 @@ namespace Blog.Screens.PostScreen
 
             Console.WriteLine("\nProvide a user id to create a post \n");
 
-            var userRepository = new Repository<User>(_connection);
-            var categoryRepository = new Repository<Category>(_connection);
+            var userRepository = new UserRepository(_connection);
+            var categoryRepository = new CategoryRepository(_connection);
 
             User? user = userSelection(userRepository);
             if (user == null)
@@ -61,7 +61,7 @@ namespace Blog.Screens.PostScreen
                 LastUpdateDate = DateTime.Now
             };
 
-            var post = new Repository<Post>(_connection);
+            var post = new PostRepository(_connection);
 
             try
             {

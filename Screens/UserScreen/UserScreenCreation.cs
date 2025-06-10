@@ -2,7 +2,6 @@
 using Blog.Models;
 using Blog.Repositories;
 using Microsoft.Data.SqlClient;
-using System.Data;
 
 namespace Blog.Screens.UserScreen
 {
@@ -27,7 +26,7 @@ namespace Blog.Screens.UserScreen
 
             var slug = name.ToLower().Replace(" ", "") + "#" + InputHelpers.MathRandomNumber(10000, 99999);
 
-            var userRepository = new Repository<User>(_connection);
+            var userRepository = new UserRepository(_connection);
             var user = new User
             {
                 Name = name,

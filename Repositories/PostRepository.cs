@@ -2,18 +2,12 @@
 using Blog.Models;
 using Dapper;
 using Microsoft.Data.SqlClient;
-using System.Data;
 
 namespace Blog.Repositories
 {
-    public class PostRepository
+    public class PostRepository : Repository<Post>
     {
-        private readonly SqlConnection _connection;
-
-        public PostRepository(SqlConnection connection)
-        {
-            _connection = connection;
-        }
+        public PostRepository(SqlConnection connection) : base(connection) { }
 
         public IEnumerable<PostGetOneCategoryDto> GetPostsFromOneCategory(int categoryId)
         {

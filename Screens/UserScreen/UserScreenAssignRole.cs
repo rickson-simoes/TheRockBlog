@@ -23,7 +23,7 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("\n Assign an user to a role by choosing an user and a type of role.");
 
             var users = new UserRepository(_connection);
-            var roles = new Repository<Role>(_connection);
+            var roles = new RoleRepository(_connection);
 
             User selectedUser = SelectUser(users);
 
@@ -98,9 +98,10 @@ namespace Blog.Screens.UserScreen
             int.TryParse(Console.ReadLine(), out int userId);
             if (userId == 0)
             {
-                return new User { Id = 0};
+                return new User { Id = 0 };
             }
-            User userSelected = users.FirstOrDefault(usr => usr.Id == userId);
+
+            User? userSelected = users.FirstOrDefault(usr => usr.Id == userId);
 
             return userSelected;
         }
@@ -118,7 +119,7 @@ namespace Blog.Screens.UserScreen
             Console.WriteLine("============================================================");
             Console.Write("Please choose the Role ID: ");
             int.TryParse(Console.ReadLine(), out int roleId);
-            Role roleSelected = roles.FirstOrDefault(role => role.Id == roleId);
+            Role? roleSelected = roles.FirstOrDefault(role => role.Id == roleId);
             
             if(roleSelected == null)
             {

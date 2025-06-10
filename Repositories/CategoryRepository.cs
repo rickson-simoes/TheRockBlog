@@ -1,17 +1,13 @@
 ﻿using Blog.DTOS.Category;
+using Blog.Models;
 using Dapper;
 using Microsoft.Data.SqlClient;
 
 namespace Blog.Repositories
 {
-    public class CategoryRepository
+    public class CategoryRepository : Repository<Category>
     {
-        private readonly SqlConnection _connection;
-
-        public CategoryRepository(SqlConnection connection)
-        {
-            _connection = connection;
-        }
+        public CategoryRepository(SqlConnection connection) : base(connection) { }
 
         public IEnumerable<CategoryPostCountDto> GetCategoryPostCount()
         {

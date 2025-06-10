@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Blog.Repositories
 {
-    public class Repository<TModel> where TModel : class, IEntity
+    public abstract class Repository<TModel> where TModel : class, IEntity
     {
         public readonly SqlConnection _connection;
         public Repository(SqlConnection connection)

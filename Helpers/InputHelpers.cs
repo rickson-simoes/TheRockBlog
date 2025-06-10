@@ -4,7 +4,6 @@
     {
         /// <summary>
         /// <para> - This function assures that the user can't type an empty value or white space.</para>
-        /// <para> - On the param is the field name that will pop up for the user.</para>
         /// </summary>
         /// <param name="field">Name of the param to show on the user screen.</param>
         /// <returns>A valid string that is not null or with only white spaces.</returns>

@@ -30,7 +30,7 @@ namespace Blog.Screens.TagScreen
                 Slug = slug
             };
 
-            var dbTag = new Repository<Tag>(_connection);
+            var dbTag = new TagRepository(_connection);
 
             try
             {
