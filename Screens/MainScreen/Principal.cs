@@ -10,16 +10,11 @@ namespace Blog.Screens.MainScreen
     public class Principal
     {
         private readonly SqlConnection _connection;
-        public Principal(SqlConnection connection)
-        {
-            _connection = connection;
-        }
+        public Principal(SqlConnection connection) => _connection = connection;
 
         public void Main()
         {
-            var run = true;
-
-            while(run)
+            while(true)
             {
                 Console.Clear();
                 Console.WriteLine("=================================");
