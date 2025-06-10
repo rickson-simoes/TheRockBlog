@@ -1,5 +1,4 @@
-﻿using Blog.Repositories;
-using Blog.Screens.MainScreen;
+﻿using Blog.Screens.MainScreen;
 using Microsoft.Data.SqlClient;
 
 namespace Blog
@@ -16,22 +15,7 @@ namespace Blog
         {
             using var connection = new SqlConnection(CONNECTION_STRING);
 
-            var screen = new Principal(connection);
-            screen.Main();
-        }
-        public static void ReadUsers(SqlConnection connection)
-        {
-            var userRepository = new UserRepository(connection);
-            var users = userRepository.Get();
-
-            foreach (var user in users)
-            {
-                Console.WriteLine(user.Name);
-                Console.WriteLine(user.Email);
-                Console.WriteLine(user.Slug);
-                Console.WriteLine("============================");
-            }           
-        }
-        
+            new Principal(connection).Main();
+        }        
     }
 }
