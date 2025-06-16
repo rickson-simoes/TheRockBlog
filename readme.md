@@ -1,4 +1,4 @@
-<h3>Basic Setup:</h3>
+<h3>Console log - Basic Setup:</h3>
 
 <ul>
 	<li> - Database with data -> blogrockbp.bacpac </li>
