@@ -13,6 +13,10 @@ namespace Blog
 
         static void Main()
         {
+            // note.: I can provide a static prop to receive the connection here
+            // this will avoid the use of ctor connection property
+            // and use it straight to the db connections instead.
+
             using var connection = new SqlConnection(CONNECTION_STRING);
 
             new Principal(connection).Main();

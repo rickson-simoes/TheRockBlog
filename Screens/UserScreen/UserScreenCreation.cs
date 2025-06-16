@@ -22,7 +22,6 @@ namespace Blog.Screens.UserScreen
             var name = InputHelpers.NotNullOrWhiteSpace("Name");
             var email = InputHelpers.NotNullOrWhiteSpace("E-mail");
             var pwd = InputHelpers.NotNullOrWhiteSpace("Password");
-            var bio = InputHelpers.NotNullOrWhiteSpace("Please talk a bit about you (BIO)");
 
             var slug = name.ToLower().Replace(" ", "") + "#" + InputHelpers.MathRandomNumber(10000, 99999);
 
@@ -32,8 +31,6 @@ namespace Blog.Screens.UserScreen
                 Name = name,
                 Email = email,
                 PasswordHash = pwd,
-                Bio = bio,
-                Image = "https//ImageNotNecessary",
                 Slug = slug
             };
 

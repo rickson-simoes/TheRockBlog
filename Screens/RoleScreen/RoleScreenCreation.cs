@@ -28,7 +28,7 @@ namespace Blog.Screens.RoleScreen
             var role = new Role
             {
                 Name = name,
-                Slug = slug,
+                Slug = slug.ToLower(),
             };
 
             var roleRepository = new RoleRepository(_connection);
