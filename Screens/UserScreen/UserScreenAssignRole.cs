@@ -9,10 +9,7 @@ namespace Blog.Screens.UserScreen
     public class UserScreenAssignRole
     {
         private readonly SqlConnection _connection;
-        public UserScreenAssignRole(SqlConnection connection)
-        {
-            _connection = connection;
-        }
+        public UserScreenAssignRole(SqlConnection connection) => _connection = connection;
 
         public void Assign()
         {
@@ -49,7 +46,7 @@ namespace Blog.Screens.UserScreen
                 return new User();
             }
 
-            User userSelected = UserSelection(users);
+            User userSelected = SelectUserValidation(users);
 
             if (userSelected == null || userSelected.Id == 0)
             {
@@ -69,7 +66,7 @@ namespace Blog.Screens.UserScreen
             return userSelected;
         }
 
-        private User UserSelection(IEnumerable<User> users)
+        private User SelectUserValidation(IEnumerable<User> users)
         {
             User? userSelected = UserList(users);
 
