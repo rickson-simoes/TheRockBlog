@@ -42,14 +42,14 @@ namespace Blog.Screens.UserScreen
             var name = InputHelpers.NotNullOrWhiteSpace("Name");
             var users = UserRepository.GetUsersByName(name);
 
-            users = CheckUsers(users, name);
+            users = SelectUserValidationByName(users, name);
 
             if (users.IsNullOrEmpty())
             {
                 return new User();
             }
 
-            User userSelected = UserSelection(users);
+            User userSelected = SelectUserValidationById(users);
 
             if (userSelected == null || userSelected.Id == 0)
             {
@@ -69,7 +69,7 @@ namespace Blog.Screens.UserScreen
             return userSelected;
         }
 
-        private User UserSelection(IEnumerable<User> users)
+        private User SelectUserValidationById(IEnumerable<User> users)
         {
             User? userSelected = UserList(users);
 
@@ -142,7 +142,7 @@ namespace Blog.Screens.UserScreen
             }
         }
 
-        private IEnumerable<User> CheckUsers(IEnumerable<User> users, string name)
+        private IEnumerable<User> SelectUserValidationByName(IEnumerable<User> users, string name)
         {
             while (users.Count() == 0)
             {
