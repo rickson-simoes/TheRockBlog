@@ -96,7 +96,6 @@ namespace Blog.Screens.PostScreen
 
             return userSelected;
         }
-
         private Category? categorySelection(Repository<Category> categoryRepository)
         {
             var categories = categoryRepository.Get();
